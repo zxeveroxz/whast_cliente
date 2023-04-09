@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "qrcode": "^1.5.1",
+    "socket.io-client": "^4.6.1",
+    "whatsapp-web.js": "^1.19.5"
+  }
+}
