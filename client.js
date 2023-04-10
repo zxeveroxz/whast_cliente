@@ -20,18 +20,3 @@ class ClienteIO {
 
 
 module.exports = {socketIO,ClienteIO};
-
-
-/** 
-socket.on('connect', function (socket) {
-    console.log('Connected!');
-});
-
-
-let enviaQR=()=>{
-    socket.emit('was qr', 'mememememememem');
-}
-
-socket.emit('CH01', 'me', 'test msg');
-
-*/
