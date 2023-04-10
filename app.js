@@ -1,7 +1,6 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
-
 global.clienteWS = null; //variable global del estado del cliente del whatsapp
-
+global.RUC = "10424517912";//varible global
 const {socketIO} = require('./client.js');
 const QR = require('qrcode');
 
@@ -13,11 +12,8 @@ const client = new Client({
     }
 });
 
-
-
 socketIO.on('connect', function () {
     console.log('Connected!');
-    
     if(clienteWS===null){
         client.initialize();
         clienteWS ="INICIALIZANDO";
@@ -30,7 +26,6 @@ client.on('qr', async (qr) => {
     socketIO.emit('leer_qr',   qr_url);
     //console.log(qr_url);
 });
-
 
 client.on('ready', () => {
     console.log('Client is ready!');
@@ -54,6 +49,22 @@ console.log("se esta pidiendo iniciar nuevamente el was");
         client.initialize();
         clienteWS ="RE-INICIALIZANDO";
     }
+});
+
+
+
+socketIO.on('mensaje_ws'+RUC, (data) => {
+    const {numero, mensaje,file} = data;
+    if(clienteWS =="READY"){
+        try {
+            client.sendMessage(numero,mensaje);
+            console.log(data);
+        } catch (error) {
+            console.log("se produjo el siguiente error: " + data);
+        }
+        
+    }
+    console.log("mensaje del servidor was para enviar los mensajes que el facturador mande");
 });
 
 

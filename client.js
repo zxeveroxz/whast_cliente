@@ -1,6 +1,11 @@
 //client.js
 let io = require('socket.io-client');
-let socketIO = io.connect('https://jsjperu.org:1000', {reconnect: true,secure: true,rejectUnauthorized:true,query: { clientId: "WAS10424517912","sala":"10424517912" }});
+let socketIO = io.connect('https://jsjperu.org:1000', 
+                                                    {reconnect: true,
+                                                    secure: true,
+                                                    rejectUnauthorized:true,
+                                                    query: { clientId: `WAS${RUC}`,"sala":RUC }
+                                                });
 
 socketIO.on('estado_ws', ()=>{
     console.log("alguien esta pidiendo el estado");
@@ -9,7 +14,7 @@ socketIO.on('estado_ws', ()=>{
 
 socketIO.on('bienvenida', (data) => {
     console.log(data);
-  });
+});
 
 
 
